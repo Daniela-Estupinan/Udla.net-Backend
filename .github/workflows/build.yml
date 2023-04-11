@@ -1,6 +1,6 @@
 name: Build
 on:
-  pull:
+  push:
     branches:
       - develop_des
   pull_request:
