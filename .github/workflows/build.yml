@@ -2,7 +2,7 @@ name: Build
 on:
   push:
     branches:
-      - develop_des
+      - main
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
