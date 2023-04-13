@@ -12,12 +12,12 @@ router.post('/register', async (req,res)=>{
     const hashPassword = await bcrypt.hash(req.body.data.password,salt);
    
     const user = new User({
-        isAdmin: req.body.data.isAdmin,
         id:req.body.data._id,
         email: req.body.data.email,
         password: hashPassword,
+        isAdmin: req.body.data.isAdmin,
         isActive: req.body.data.isAdmin,
-
+        logginDate:req.body.data.logginDate
     });
     const usuario = new Usuario({
         id: user.id,
