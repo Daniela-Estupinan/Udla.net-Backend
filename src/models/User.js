@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    loginDate:{
+    logginDate:{
         type: Number, 
         default: (new Date()).getTime() 
     }

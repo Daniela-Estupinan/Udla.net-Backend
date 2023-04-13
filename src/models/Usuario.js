@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const community = require('./Community')
 const usuarioSchema = new mongoose.Schema({
 
     _id: {
@@ -17,13 +18,14 @@ const usuarioSchema = new mongoose.Schema({
         min:6
     },
     age:{
-        //date
+       type: Date
     },
     gender:{
         type: String,
         required:true,
-        max:2,
-        min:2
+        enum:[
+            "M","F","O"
+        ]
     },
     semester:{
         type: Boolean,
@@ -38,16 +40,25 @@ const usuarioSchema = new mongoose.Schema({
         required: true,
     },
     profilePicture:{
-        //jpg
+        name: String,
+        desc: String,
+        img:
+        {
+            data: Buffer,
+            contentType: String
+        }
     },
-    communitys:{
-        //id comunity
-    },
-    interest:{
-        interestSchema
-    },
+  /*  communitys:{
+        
+    },*/
+    interest:
+        [{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Interest'
+        }]
+    ,
     links:{
-        type: string
+        type: String
     }
 
 
