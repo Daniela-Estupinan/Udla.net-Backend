@@ -13,3 +13,4 @@ mongoose.connect(process.env.DB_URI, {
     useUnifiedTopology : true
 }).then(()=>console.log('Connected to the database')).catch(err=> console.log(err));
 
+module.exports = app;
