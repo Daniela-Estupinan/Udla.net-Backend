@@ -4,7 +4,7 @@ const API = require("../controllers/usuarioController.js")
 const multer = require('multer');
 const verify = require("./verifyToken.js");
 //multer middleware
-var storage = multer.diskStorage({
+/*var storage = multer.diskStorage({
     destination: function(req,file,cb){
         cb(null, "./uploads");
     },
@@ -16,12 +16,12 @@ var storage = multer.diskStorage({
 let upload = multer({
     storage : storage,
 }).single("image");
-
+*/
 router.get("/:id",API.fetchUsuarioById);
-router.get("/",verify,API.fetchAllUsuario);
-router.post("/",verify,upload,API.createUsuario);
+router.get("/",API.fetchAllUsuario);
+router.post("/",API.createUsuario);
 
-router.patch("/:id",verify,upload,API.updateUsuario);
-router.delete("/:id",verify,API.deleteUsuario);
+router.patch("/:id",API.updateUsuario);
+router.delete("/:id",API.deleteUsuario);
 
 module.exports = router;
