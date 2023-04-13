@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const API = require("../controllers/userController.js")
+const API = require("../controllers/usuarioController.js")
 const multer = require('multer');
 const verify = require("./verifyToken.js");
 //multer middleware
-/*var storage = multer.diskStorage({
+var storage = multer.diskStorage({
     destination: function(req,file,cb){
         cb(null, "./uploads");
     },
@@ -16,12 +16,12 @@ const verify = require("./verifyToken.js");
 let upload = multer({
     storage : storage,
 }).single("image");
-*/
-router.get("/:id",API.fetchUserById);
-router.get("/",verify,API.fetchAllUser);
-router.post("/",verify,API.createUser);
 
-router.patch("/:id",verify,API.updateUser);
-router.delete("/:id",verify,API.deleteUser);
+router.get("/:id",API.fetchUsuarioById);
+router.get("/",verify,API.fetchAllUsuario);
+router.post("/",verify,upload,API.createUsuario);
+
+router.patch("/:id",verify,upload,API.updateUsuario);
+router.delete("/:id",verify,API.deleteUsuario);
 
 module.exports = router;

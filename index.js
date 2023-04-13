@@ -3,8 +3,7 @@ const express = require ('express');
 const app = express();
 const PORT = process.env.PORT || 8080;
 const mongoose = require('mongoose');
-const userRoute = require('./src/routes/usuarioRoute.js');
-const login = require('./src/routes/login.js');
+
 
 app.listen(PORT, console.log("Server start for port: "+ PORT))
 
@@ -20,11 +19,11 @@ mongoose.connect(process.env.DB_URI, {
 
 //routes middlewares
 
-app.use('/login', require('./src/routes/login.js'));
+app.use('/api/login', require('./src/routes/login.js'));
 
 //routes prefixs
 
-app.use("/api/user", require('./src/routes/usuarioRoute.js'));
-
+app.use("/api/usuario", require('./src/routes/usuarioRoute.js'));
+app.use("/api/user", require('./src/routes/userRoute.js'));
 
 module.exports = app;

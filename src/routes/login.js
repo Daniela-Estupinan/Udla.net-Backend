@@ -34,7 +34,7 @@ router.post('/register', async (req,res)=>{
             "linkedIn":"https://www.linkedin.com",
             "facebook":"https://www.facebook.com"
         }
-    })
+    });
     const email = user.email.split("@");
     if(email[1]== "udla.edu.ec"){
         console.log("valid");
@@ -58,7 +58,7 @@ router.post('/login',async (req,res) =>{
     
     const user =  await User.findOne({email: req.body.data.email});
     if(user.isActive==True){
-        const usuario = await Usuario.findOne({id:user._id});
+        
         if(!user) return res.status(400).send('Email or password is incorrect')
         //correct
         const validPass = await bcrypt.compare(req.body.data.password, user.password);
