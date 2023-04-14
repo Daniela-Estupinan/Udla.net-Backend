@@ -60,15 +60,16 @@ const signup = async (req, res) => {
 };
 const login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const {email} = req.body;
     const user = await User.findOne({ email:email });
-    if(user.isActive==true){
+    
       if (!user) {
         return res.status(401).send({
           status: "failure",
           message: "user does not exist",
         });
       }
+    if(user.isActive==true){
     }else{
         return res.status(401).send({
         status: "failure",
