@@ -1,33 +1,33 @@
 const mongoose = require('mongoose');
-const community = require('./Community')
+//const community = require('./Community')
 const userSchema = new mongoose.Schema({
 
-    _id: {
-        type: String
-    },
     email:{
         type:String,
-        required:true,
+        required:false,
         max:255,
-        min:6
+        min:6,
+        unique:true
     },
    password:{
         type:String,
-        required:true,
+        required:false,
         max:1024,
         min:6
     },
-    isAdmin:{
-        type: Boolean, 
-        default: false
-    },
+   role:{
+        type:String,
+        enum:["admin","user"],
+        default:"user",
+   },
     isActive:{
         type: Boolean,
-        default: false
+        default: true,
+        required:true,
     },
     logginDate:{
-        type: Number, 
-        default: (new Date()).getTime() 
+        type: String, 
+        //default: (new Date()).getDate() 
     },
     firstName:{
         type:String,
@@ -37,31 +37,30 @@ const userSchema = new mongoose.Schema({
     },
     lastName:{
         type:String,
-        required:true,
         max:1024,
         min:6
     },
     age:{
-       type: Date
+       type: Number
     },
     gender:{
         type: String,
-        required:true,
+        
         enum:[
             "M","F","O"
         ]
     },
     semester:{
-        type: Boolean,
-        default: false
+        type: Number
+       
     },
     major:{
         type: String,
-        required: true
+        
     },
     description:{
         type: String,
-        required: true,
+        default:"",
     },
     profilePicture:{
         name: String,
@@ -75,23 +74,30 @@ const userSchema = new mongoose.Schema({
   /*  communitys:{
         
     },*/
-    interest:
-        [{
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'Interest'
-        }]
-    ,
-    links:{
-        type: String
-    }
-
-
-
-});
-const interestSchema = new mongoose.Schema({
-    name:{
+    interest:{
         type:String
     }
+        /*[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Interest'
+            
+        }]*/
+    ,
+    links:{
+        type: String,
+       
+    },
+
+    jwtToken:{
+        type:String,
+    }
+
 });
-module.exports = mongoose.model('Usuario', userSchema);
-module.exports = mongoose.model('Interest', interestSchema);
+/*const interestSchema = new mongoose.Schema({
+    name:{
+        type:String,
+        default:"Tecnologia"
+    }
+});*/
+module.exports = mongoose.model('User', userSchema);
+//module.exports = mongoose.model('Interest', interestSchema);

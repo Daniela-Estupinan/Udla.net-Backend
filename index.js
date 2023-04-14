@@ -19,9 +19,7 @@ mongoose.connect(process.env.DB_URI, {
     useUnifiedTopology : true
 }).then(()=>console.log('Connected to the database')).catch(err=> console.log(err));
 
-//routes middlewares
 
-app.use('/api/login', require('./src/routes/login.js'));
 
 //routes prefixs
 
