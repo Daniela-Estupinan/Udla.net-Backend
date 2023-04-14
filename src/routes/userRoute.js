@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const API = require("../controllers/userController.js")
 
-const verify = require("./verifyToken.js");
 
 
 router.get("/:id",API.fetchUserById);

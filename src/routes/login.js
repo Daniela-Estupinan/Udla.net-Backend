@@ -1,6 +1,6 @@
 const router = require ('express').Router();
 const User = require ('../models/User.js');
-const Usuario = require ('../models/Usuario.js');
+const Usuario = require ('../models/User.js');
 const bcrypt = require ('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -12,29 +12,13 @@ router.post('/register', async (req,res)=>{
     const hashPassword = await bcrypt.hash(req.body.data.password,salt);
    
     const user = new User({
-        id:req.body.data._id,
         email: req.body.data.email,
         password: hashPassword,
         isAdmin: req.body.data.isAdmin,
         isActive: req.body.data.isAdmin,
         logginDate:req.body.data.logginDate
     });
-    const usuario = new Usuario({
-        id: user.id,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        age : req.body.age,
-        gender: req.body.gender,
-        semester: req.body.semester,
-        major: req.body.major,
-        description: req.body.description,
-        profilePicture : req.body.profilePicture,
-        interest: req.body.interest,
-        link:{
-            "linkedIn":"https://www.linkedin.com",
-            "facebook":"https://www.facebook.com"
-        }
-    });
+    
     const email = user.email.split("@");
     if(email[1]== "udla.edu.ec"){
         console.log("valid");

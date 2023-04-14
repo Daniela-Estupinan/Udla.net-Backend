@@ -1,6 +1,5 @@
 const User = require("../models/User.js");
 const fs = require("fs");
-const verify = require("../routes/verifyToken.js");
 module.exports = class API{
     //fetch User posts
     static async fetchAllUser(req,res){
