@@ -71,9 +71,10 @@ const userSchema = new mongoose.Schema({
             contentType: String
         }
     },
-  /*  communitys:{
-        
-    },*/
+   communitys:{
+        type:"String",
+        default:"MyCommunitys"
+    },
     interest:{
         type:String
     }

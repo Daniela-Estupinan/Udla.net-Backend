@@ -6,7 +6,7 @@ const generateToken = require("../utils/generateToken");
 const signup = async (req, res) => {
   try {
     const data = req.body;
-    const { firstName, email,password,isActive,role,lastName,age,gender,semester,major,description,profilePicture,interest,links } = data;
+    const { firstName, email,password,isActive,role,lastName,age,gender,semester,major,description,profilePicture,interest,links,communitys } = data;
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     const createduser = new User({
@@ -24,6 +24,7 @@ const signup = async (req, res) => {
       profilePicture:profilePicture,
       interest:interest,
       links:links,
+      communitys:communitys,
 
     });
     
