@@ -41,9 +41,11 @@ const signup = async (req, res) => {
           },
         });
     
-        res.status(500).send({
-             message:"El dominio no es correcto, no es una cuenta de la udla",
-          });
+        
+    }else{
+      res.status(500).send({
+        message:"El dominio no es correcto, no es una cuenta de la udla",
+     });
     }
 
    } catch (e) {
