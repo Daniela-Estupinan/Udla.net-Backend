@@ -1,12 +1,12 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/User.js");
 const jwt = require("jsonwebtoken");
-const generateToken = require("../utils/generateToken");
+const generateToken = require("../utils/generateToken.js");
 
 const signup = async (req, res) => {
   try {
     const data = req.body;
-    const { firstName, email,password,isActive,role,lastName,age,gender,semester,major,description,profilePicture,interest,links,communitys } = data;
+    const { firstName, email,password,lastName,role,isActive,age,gender,semester,major,description,profilePicture,interest,links,communitys } = data;
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     const createduser = new User({
@@ -31,7 +31,7 @@ const signup = async (req, res) => {
     const dominio = createduser.email.split("@");
 
     if(dominio[1]=="udla.edu.ec"){
-      console.log("dominio: "+dominio);
+      console.log("El dominio es: "+dominio[1]);
       const saveuser = await createduser.save();
         res.status(200).send({
           status: "success",
@@ -45,12 +45,8 @@ const signup = async (req, res) => {
              message:"El dominio no es correcto, no es una cuenta de la udla",
           });
     }
-   
-        
-        
-    
 
-  } catch (e) {
+   } catch (e) {
     res.status(500).send({
       status: "failure",
       message: e.message,
