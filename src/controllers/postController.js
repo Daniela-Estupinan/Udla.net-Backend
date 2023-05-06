@@ -65,7 +65,7 @@ module.exports = class API{
             const result = await Post.findByIdAndDelete(id);
             if(result.image !=''){
                 try {
-                    fs.unlinkSync('../uploads' +result.image);
+                    fs.unlinkSync('../uploads/' +result.image);
                 } catch (err) {
                     console.log(err);
                 }
