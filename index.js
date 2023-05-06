@@ -24,7 +24,8 @@ mongoose.connect(process.env.DB_URI, {
 
 //routes prefixs
 
-app.use("/api/user", require('./src/routes/userRoute.js'));
-app.use("/api/post",require('./src/routes/postRoute.js'));
+app.use("/api/user", require('./src/routes/userRoute.js'));//User
+app.use("/api/post",require('./src/routes/postRoute.js'));//Post
+app.use("/api/community",require('./src/routes/communityRoute.js'));//Community
 
 module.exports = app;
