@@ -9,9 +9,10 @@ app.use(cors());
 
 app.listen(PORT, console.log("Server start for port: "+ PORT))
 
-
+//middlewares
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+app.use(express.static("uploads"));
 
 //database connection
 mongoose.connect(process.env.DB_URI, {
@@ -24,5 +25,6 @@ mongoose.connect(process.env.DB_URI, {
 //routes prefixs
 
 app.use("/api/user", require('./src/routes/userRoute.js'));
+app.use("/api/post",require('./src/routes/postRoute.js'));
 
 module.exports = app;
