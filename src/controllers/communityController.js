@@ -65,7 +65,7 @@ module.exports = class API{
             const result = await Community.findByIdAndDelete(id);
             if(result.image !=''){
                 try {
-                    fs.unlinkSync('../uploads/community/' +result.image);
+                    fs.unlinkSync('../uploads/community/' +result.profileImage);
                 } catch (err) {
                     console.log(err);
                 }
