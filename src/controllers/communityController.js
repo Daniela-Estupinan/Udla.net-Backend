@@ -37,17 +37,18 @@ module.exports = class API{
         const id = req.params.id;
 
         let new_image = '';
-        if(req.file){
+        if (req.file) {
             new_image = req.file.filename;
-        try {
-         fs.unlinkSync('../uploads/community/'+ req.body.old_image);
-            
-        } catch (err) {
-            console.log(err);
-        }    
-        }else{
-            new_image = req.body.old_image;
-        }
+            if (req.body.profileImage) {
+              try {
+                fs.unlinkSync('./uploads/' + req.body.profileImage);
+              } catch (err) {
+                console.log(err);
+              }
+            }
+          } else {
+            new_image = req.body.profileImage;
+          }
         const newCommunity = req.body;
         newCommunity.profileImage = new_image;
 
@@ -65,7 +66,7 @@ module.exports = class API{
             const result = await Community.findByIdAndDelete(id);
             if(result.image !=''){
                 try {
-                    fs.unlinkSync('../uploads/community/' +result.profileImage);
+                    fs.unlinkSync('./uploads/community/' +result.profileImage);
                 } catch (err) {
                     console.log(err);
                 }

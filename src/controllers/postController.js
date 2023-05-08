@@ -35,19 +35,19 @@ module.exports = class API{
     //updated a post
     static async updatePost(req,res){
         const id = req.params.id;
-
         let new_image = '';
-        if(req.file){
+        if (req.file) {
             new_image = req.file.filename;
-        try {
-         fs.unlinkSync('../uploads/'+ req.body.old_image);
-            
-        } catch (err) {
-            console.log(err);
-        }    
-        }else{
-            new_image = req.body.old_image;
-        }
+            if (req.body.image) {
+              try {
+                fs.unlinkSync('./uploads/' + req.body.image);
+              } catch (err) {
+                console.log(err);
+              }
+            }
+          } else {
+            new_image = req.body.image;
+          }
         const newPost = req.body;
         newPost.image = new_image;
 
@@ -65,7 +65,7 @@ module.exports = class API{
             const result = await Post.findByIdAndDelete(id);
             if(result.image !=''){
                 try {
-                    fs.unlinkSync('../uploads/' +result.image);
+                    fs.unlinkSync('./uploads/' +result.image);
                 } catch (err) {
                     console.log(err);
                 }

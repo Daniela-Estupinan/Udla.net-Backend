@@ -9,13 +9,14 @@ var storage = multer.diskStorage({
         cb(null, "./uploads");
     },
     filename: function(req, file, cb){
-        cb(null, file.fieldname+"_"+Date.now()+"_"+file.originalname);
+        cb(null, file.fieldname+"_"+file.originalname);
     },
 });
 
 let upload = multer({
     storage : storage,
 }).single("image");
+
 
 
 //POST
@@ -25,5 +26,7 @@ router.post("/",upload,API_Post.createPost);
 router.patch("/:id",upload,API_Post.updatePost);
 router.delete("/:id",API_Post.deletePost);
 //COMMUNITY
+
+
 
 module.exports = router;
