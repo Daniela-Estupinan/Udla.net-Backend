@@ -5,7 +5,7 @@ const communitySchema = mongoose.Schema({
     description: String,
     profileImage: String,
     creator:String,
-    objective:String,
+    obj:String,
     created: {
         type: Date,
         default: Date.now
